@@ -63,18 +63,8 @@ def obtener_incrustaciones(data,column_name,api_key):
     embeddings = []
     error_count = 0
     for texto in data[column_name]:
-        response = client.embeddings.create(input=texto, model="text-embedding-ada-002")
-        if response and hasattr(response, 'embeddings'):
-            embedding = response.embeddings[0].value
-            embeddings.append(embedding)
-        else:
-            st.error(f"Error: No se pudo obtener la incrustación para el texto: {texto}")
-            error_count += 1
-
-    if error_count == 0:
-        st.success("Incrustaciones obtenidas exitosamente.")
-    else:
-        st.warning(f"{error_count} incrustaciones no se pudieron obtener.")
+        embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002")
+        embeddings.append(embedding)
 
     data['Embeddings'] = embeddings
     data['Embeddings'] =data['Embeddings'].apply(parse_embeddings)
