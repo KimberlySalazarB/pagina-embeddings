@@ -61,10 +61,20 @@ def obtener_incrustaciones(data,column_name,api_key):
     model = "gpt-3.5-turbo"
     # Itera a través de la columna y obtén las incrustaciones para cada texto.
     embeddings = []
+    error_count = 0
     for texto in data[column_name]:
-        embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002")["data"][0]["embedding"]
-         
-        embeddings.append(embedding)
+        response = client.embeddings.create(input=texto, model="text-embedding-ada-002")
+        if response.status.code == 200:
+            embedding = response.embeddings[0].value
+            embeddings.append(embedding)
+        else:
+            st.error(f"Error: No se pudo obtener la incrustación para el texto: {texto}")
+            error_count += 1
+
+    if error_count == 0:
+        st.success("Incrustaciones obtenidas exitosamente.")
+    else:
+        st.warning(f"{error_count} incrustaciones no se pudieron obtener.")
 
     data['Embeddings'] = embeddings
     data['Embeddings'] =data['Embeddings'].apply(parse_embeddings)
