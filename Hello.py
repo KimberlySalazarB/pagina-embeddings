@@ -62,8 +62,8 @@ def obtener_incrustaciones(data,column_name,api_key):
     # Itera a través de la columna y obtén las incrustaciones para cada texto.
     embeddings = []
     for texto in data[column_name]:
-        response = client.embeddings.create(input=texto, model="text-embedding-ada-002")
-        embedding = response["data"][0]["embedding"]
+        embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002")["data"][0]["embedding"]
+         
         embeddings.append(embedding)
 
     data['Embeddings'] = embeddings
