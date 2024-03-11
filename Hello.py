@@ -64,7 +64,7 @@ def obtener_incrustaciones(data,column_name,api_key):
     error_count = 0
     for texto in data[column_name]:
         response = client.embeddings.create(input=texto, model="text-embedding-ada-002")
-        if response.status.code == 200:
+        if response and hasattr(response, 'embeddings'):
             embedding = response.embeddings[0].value
             embeddings.append(embedding)
         else:
