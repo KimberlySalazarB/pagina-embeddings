@@ -16,6 +16,7 @@
 import os
 import streamlit as st
 import pandas as pd
+import numpy as np
 import requests
 import openai
 from openai import OpenAI
@@ -36,78 +37,47 @@ def obtener_contenido_archivo(url):
         print("Error al obtener el archivo:", e)
         return None
 
-
-def clasificar_comentarios(data, column_name, api_key):
+#modelo
+def modelo():
+    url_archivo = "https://raw.githubusercontent.com/KimberlySalazarB/pagina-embeddings/main/modelo_clasificacion.pkl"
+    contenido = obtener_contenido_archivo(url_archivo)
+    if contenido is not None:
+        return contenido
+    else:
+        return None
+    
+def parse_embeddings(embedding_str):
     try:
-        # Configurar la API Key de OpenAI
-        client = OpenAI(api_key=api_key)
+        # Eliminar corchetes y dividir por comas para obtener los números
+        values = embedding_str.strip('[]').split(', ')
+        # Convertir los valores a números flotantes y devolver como lista
+        return [float(val) for val in values]
+    except:
+        # Si no se puede convertir, devuelve una lista vacía
+        return []
+def obtener_incrustaciones(data,column_name,api_key):
+        # Seleccionar modelo  "gpt-3.5-turbo"
+    client = OpenAI(api_key=api_key)
+    model = "gpt-3.5-turbo"
+    # Itera a través de la columna y obtén las incrustaciones para cada texto.
+    embeddings = []
+    for texto in data[column_name]:
+        response = client.embeddings.create(input=texto, model="text-embedding-ada-002")
+        embedding = response["data"][0]["embedding"]
+        embeddings.append(embedding)
 
-        # Definir el texto del prompt para la clasificación
-        prompt = """
-        Tendrás un rol de clasificador de comentarios de una publicación relacionada con la vacuna contra el VPH.
-        No tienes permitido responder otra cosa que no sean números. Las clasificaciones son:
+    data['Embeddings'] = embeddings
+    data['Embeddings'] =data['Embeddings'].apply(parse_embeddings)
 
-        Si el comentario tiene una postura contraria a la vacuna contra el VPH (antivacuna). La respuesta es: 0
-        Si el comentario tiene una postura a favor de la vacuna contra el VPH (provacuna). La respuesta es: 1
-        Si el comentario refleja una duda o dudas relacionadas con la vacuna contra el VPH. La respuesta es: 2
-        Si el comentario habla de cualquier otra cosa. La respuesta es: 3
+    # Obtener la longitud máxima de las incrustaciones
+    max_length = max(len(embedding) for embedding in data['Embeddings'])
 
-        Trata de interpretar las intenciones de las personas, ya que se trata de comentarios de Facebook.
-        Si no puedes clasificar, tu respuesta debe ser "3".
+    # Aplicar padding a las incrustaciones para que todas tengan la misma longitud
+    nuevos_padded_embeddings = [embedding + [0.0] * (max_length - len(embedding)) for embedding in data['Embeddings']]
 
-        Ahora, clasifica el siguiente comentario, teniendo en cuenta que tu respuesta es solo un número:
-        """
+    X_nuevos = np.array(nuevos_padded_embeddings)
 
-        # Variable para almacenar la posición actual en el bucle
-        current_index = 0
-
-        # Crear una columna vacía para almacenar las respuestas si aún no existe
-        if 'Clasificación_gpt_4' not in data.columns:
-            data['Clasificación_gpt_4'] = ''
-
-        # Iterar sobre cada comentario en el DataFrame
-        for index, row in data.iterrows():
-            # Verificar si se debe retomar desde el punto de reinicio guardado
-            if index < current_index:
-                continue
-
-            comment = row[column_name]
-            try:
-                # Crear la solicitud de completado de chat
-                completion = client.chat.completions.create(
-                    model="gpt-4",
-                    messages=[
-                        {"role": "system", "content": prompt},
-                        {"role": "user", "content": comment}
-                    ],
-                    temperature=0,
-                    max_tokens=1
-                )
-                response = completion.choices[0].message.content.strip()
-
-                # Verificar si la respuesta es un número
-                if response.isdigit():
-                    # Convertir la respuesta a entero
-                    response = int(response)
-                else:
-                    response = None
-
-                data.at[index, 'Clasificación_gpt_4'] = response
-
-                # Guardar el DataFrame actualizado
-                # data.to_csv('data_clasificado.csv', index=False)
-                #st.write(api_key)
-            except Exception as e:
-                # Manejar el error del servidor de OpenAI
-                st.error("Error del servidor de OpenAI: " + str(e))
-                st.error("Reanudando el proceso desde la iteración " + str(index))
-                break
-
-    except Exception as e:
-        # Manejar cualquier otro error
-        st.error("Error: " + str(e))
-
-    return data
+    return X_nuevos
 
 
 # Función principal
@@ -164,10 +134,18 @@ def run():
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
-                data = clasificar_comentarios(data, column_name, api_key)
-                st.write("Datos clasificados:")
-                #st.write(api_key)
-                st.write(data)
+                X_nuevos = obtener_incrustaciones(data, column_name, api_key)
+
+                # Añadir ceros adicionales para igualar el número de características esperado por el modelo
+                X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
+
+                # Hacer predicciones con el modelo cargado utilizando los datos con padding
+                predicciones_nuevas = modelo.predict(X_nuevos_con_padding)
+                if 'Clasificación_gpt_4' not in data.columns:
+                    data['Clasificación_gpt_4'] = ''
+                for index, row in data.iterrows():
+                    data.at[index, 'Clasificación_gpt_4'] = predicciones_nuevas
+                    st.write(data)
 
         except Exception as e:
             st.error(f"Error al cargar el archivo: {e}")
@@ -201,6 +179,3 @@ def run():
                     
 if __name__ == "__main__":
     run()
-
-    
-
