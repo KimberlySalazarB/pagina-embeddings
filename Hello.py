@@ -59,10 +59,9 @@ def parse_embeddings(embedding_str):
 def obtener_incrustaciones(data,column_name,api_key):
         # Seleccionar modelo  "gpt-3.5-turbo"
     client = OpenAI(api_key=api_key)
-    model = "gpt-3.5-turbo"
+    #model = "gpt-3.5-turbo"
     # Itera a través de la columna y obtén las incrustaciones para cada texto.
     embeddings = []
-    error_count = 0
     for texto in data[column_name]:
         embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002").data[0].embedding
         embeddings.append(embedding)
