@@ -26,6 +26,8 @@ from PIL import Image
 from io import BytesIO
 import subprocess
 from openai import OpenAI
+import sklearn
+
 
 
 # Función para obtener el contenido de un archivo desde una URL
@@ -117,7 +119,7 @@ def run():
 
     column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
     
-    
+    st.write("Versión de scikit-learn:", sklearn.__version__)
                       
     uploaded_file = st.file_uploader("Cargar archivo", type=["csv", "xlsx"])
 
