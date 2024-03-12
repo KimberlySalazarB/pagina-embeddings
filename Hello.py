@@ -63,7 +63,7 @@ def obtener_incrustaciones(data,column_name,api_key):
     embeddings = []
     error_count = 0
     for texto in data[column_name]:
-        embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002")
+        embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002").data[0].embedding
         embeddings.append(embedding)
 
     data['Embeddings'] = embeddings
