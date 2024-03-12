@@ -139,9 +139,9 @@ def run():
 
                 # Añadir ceros adicionales para igualar el número de características esperado por el modelo
                 X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
-
+                modelo_cargado = pickle.loads(modelo())
                 # Hacer predicciones con el modelo cargado utilizando los datos con padding
-                predicciones_nuevas = modelo.predict(X_nuevos_con_padding)
+                predicciones_nuevas = modelo_cargado.predict(X_nuevos_con_padding)
                 if 'Clasificación_gpt_4' not in data.columns:
                     data['Clasificación_gpt_4'] = ''
                 for index, row in data.iterrows():
