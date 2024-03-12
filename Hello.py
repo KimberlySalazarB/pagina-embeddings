@@ -103,7 +103,11 @@ def obtener_incrustaciones(data, column_name, api_key):
         X_nuevos = np.array(nuevos_padded_embeddings)
         
 
-        return X_nuevos
+         # Aplicar PCA para reducir la dimensión de los datos
+        pca = PCA(n_components=n_features_desired)
+        X_reduced = pca.fit_transform(X_nuevos)
+        
+        return X_reduced
 
     except Exception as e:
         print("Error general al obtener incrustaciones:", e)
