@@ -29,7 +29,7 @@ from openai import OpenAI
 import sklearn
 from sklearn.exceptions import InconsistentVersionWarning
 import warnings
-
+from sklearn.decomposition import PCA
 
 
 
@@ -102,8 +102,12 @@ def obtener_incrustaciones(data, column_name, api_key):
 
         X_nuevos = np.array(nuevos_padded_embeddings)
         
-
-        return X_nuevos
+        # Aplicar PCA para reducir la dimensión de las incrustaciones
+        pca = PCA(n_components=1489)
+        X_reduced = pca.fit_transform(X_nuevos)
+        
+        return X_reduced
+        #return X_nuevos
 
     except Exception as e:
         print("Error general al obtener incrustaciones:", e)
@@ -169,12 +173,12 @@ def run():
                 X_nuevos = obtener_incrustaciones(data, column_name, api_key)
                 st.write(X_nuevos)
                 # Añadir ceros adicionales para igualar el número de características esperado por el modelo
-                X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
-                st.write(X_nuevos_con_padding)
+                #X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
+                #st.write(X_nuevos_con_padding)
                 modelo_cargado = pickle.loads(modelo())
                 # Hacer predicciones con el modelo cargado utilizando los datos con padding
                 # warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
-                predicciones_nuevas = modelo_cargado.predict(X_nuevos_con_padding)
+                predicciones_nuevas = modelo_cargado.predict(X_nuevos)
                 
                 if 'Clasificación_gpt_4' not in data.columns:
                     data['Clasificación_gpt_4'] = ''
