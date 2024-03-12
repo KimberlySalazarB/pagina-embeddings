@@ -85,11 +85,11 @@ def obtener_incrustaciones(data, column_name, api_key):
             except Exception as e:
                 print("Error al obtener incrustaciones para el texto:", texto)
                 print("Excepción:", e)
-
+        data['Embeddings'] = embeddings
         if not embeddings:
             print("Advertencia: No se pudieron obtener incrustaciones para ningún texto.")
             return None
-
+        data['Embeddings'] =data['Embeddings'].apply(parse_embeddings)
         # Obtener la longitud máxima de las incrustaciones
         max_length = max(len(embedding) for embedding in embeddings)
 
