@@ -85,21 +85,21 @@ def obtener_incrustaciones(data, column_name, api_key):
             except Exception as e:
                 print("Error al obtener incrustaciones para el texto:", texto)
                 print("Excepción:", e)
-        data['Embeddings'] = embeddings
+        
         if not embeddings:
             print("Advertencia: No se pudieron obtener incrustaciones para ningún texto.")
             return None
         data['Embeddings'] =data['Embeddings'].apply(parse_embeddings)
         # Obtener la longitud máxima de las incrustaciones
-        #max_length = max(len(embedding) for embedding in embeddings)
-        max_length = max(len(embedding) for embedding in data['Embeddings'])
+        max_length = max(len(embedding) for embedding in embeddings)
+
         # Aplicar padding a las incrustaciones para que todas tengan la misma longitud
-        #nuevos_padded_embeddings = []
-        #for embedding in embeddings:
-          #  padding_length = max_length - len(embedding)
-         #   padded_embedding = embedding + [0.0] * padding_length
-           # nuevos_padded_embeddings.append(padded_embedding)
-        nuevos_padded_embeddings = [embedding + [0.0] * (max_length - len(embedding)) for embedding in data['Embeddings']]
+        nuevos_padded_embeddings = []
+        for embedding in embeddings:
+            padding_length = max_length - len(embedding)
+            padded_embedding = embedding + [0.0] * padding_length
+            nuevos_padded_embeddings.append(padded_embedding)
+
         X_nuevos = np.array(nuevos_padded_embeddings)
         
         return X_nuevos
