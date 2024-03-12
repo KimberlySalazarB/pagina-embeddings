@@ -102,7 +102,6 @@ def obtener_incrustaciones(data, column_name, api_key):
 
         X_nuevos = np.array(nuevos_padded_embeddings)
         
-    
         return X_nuevos
 
     except Exception as e:
