@@ -93,7 +93,11 @@ def obtener_incrustaciones(data, column_name, api_key):
         max_length = max(len(embedding) for embedding in embeddings)
 
         # Aplicar padding a las incrustaciones para que todas tengan la misma longitud
-        nuevos_padded_embeddings = [embedding + [0.0] * (max_length - len(embedding)) for embedding in embeddings]
+        nuevos_padded_embeddings = []
+        for embedding in embeddings:
+            padding_length = max_length - len(embedding)
+            padded_embedding = embedding + [0.0] * padding_length
+            nuevos_padded_embeddings.append(padded_embedding)
 
         X_nuevos = np.array(nuevos_padded_embeddings)
         df_resultados = pd.DataFrame(X_nuevos)
@@ -103,6 +107,7 @@ def obtener_incrustaciones(data, column_name, api_key):
     except Exception as e:
         print("Error general al obtener incrustaciones:", e)
         return None
+
 
 
 
