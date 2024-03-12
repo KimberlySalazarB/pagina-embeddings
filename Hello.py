@@ -60,29 +60,52 @@ def parse_embeddings(embedding_str):
     except:
         # Si no se puede convertir, devuelve una lista vacía
         return []
-def obtener_incrustaciones(data,column_name,api_key):
-        # Seleccionar modelo  "gpt-3.5-turbo"
-    client = OpenAI(api_key=api_key)
-    #model = "gpt-3.5-turbo"
-    # Itera a través de la columna y obtén las incrustaciones para cada texto.
-    embeddings = []
-    for texto in data[column_name]:
-        embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002").data[0].embedding
-        embeddings.append(embedding)
+def obtener_incrustaciones(data, column_name, api_key):
+    try:
+        # Verificar la API Key
+        if not api_key:
+            print("Error: API Key de OpenAI no proporcionada.")
+            return None
 
-    data['Embeddings'] = embeddings
-    data['Embeddings'] =data['Embeddings'].apply(parse_embeddings)
+        # Seleccionar modelo
+        client = OpenAI(api_key=api_key)
+        
+        # Verificar la estructura de los datos
+        if column_name not in data.columns:
+            print("Error: La columna especificada no existe en los datos.")
+            return None
 
-    # Obtener la longitud máxima de las incrustaciones
-    max_length = max(len(embedding) for embedding in data['Embeddings'])
+        # Iterar a través de la columna y obtener las incrustaciones para cada texto
+        embeddings = []
+        for texto in data[column_name]:
+            try:
+                embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002").data[0].embedding
+                embeddings.append(embedding)
+            except Exception as e:
+                print("Error al obtener incrustaciones para el texto:", texto)
+                print("Excepción:", e)
 
-    # Aplicar padding a las incrustaciones para que todas tengan la misma longitud
-    nuevos_padded_embeddings = [embedding + [0.0] * (max_length - len(embedding)) for embedding in data['Embeddings']]
+        if not embeddings:
+            print("Advertencia: No se pudieron obtener incrustaciones para ningún texto.")
+            return None
 
-    X_nuevos = np.array(nuevos_padded_embeddings)
-    df_resultados = pd.DataFrame(X_nuevos)
+        data['Embeddings'] = embeddings
+        data['Embeddings'] = data['Embeddings'].apply(parse_embeddings)
 
-    return df_resultados
+        # Obtener la longitud máxima de las incrustaciones
+        max_length = max(len(embedding) for embedding in data['Embeddings'])
+
+        # Aplicar padding a las incrustaciones para que todas tengan la misma longitud
+        nuevos_padded_embeddings = [embedding + [0.0] * (max_length - len(embedding)) for embedding in data['Embeddings']]
+
+        X_nuevos = np.array(nuevos_padded_embeddings)
+        df_resultados = pd.DataFrame(X_nuevos)
+
+        return df_resultados
+
+    except Exception as e:
+        print("Error general al obtener incrustaciones:", e)
+        return None
 
 
 # Función principal
