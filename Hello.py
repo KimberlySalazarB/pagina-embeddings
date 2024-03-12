@@ -29,6 +29,7 @@ from openai import OpenAI
 import sklearn
 from sklearn.exceptions import InconsistentVersionWarning
 import warnings
+from sklearn.decomposition import PCA
 
 
 
@@ -90,16 +91,18 @@ def obtener_incrustaciones(data, column_name, api_key):
             return None
 
         # Obtener la longitud máxima de las incrustaciones
-        max_length = max(len(embedding) for embedding in embeddings)
+        #max_length = max(len(embedding) for embedding in embeddings)
 
         # Aplicar padding a las incrustaciones para que todas tengan la misma longitud
-        nuevos_padded_embeddings = []
-        for embedding in embeddings:
-            padding_length = max_length - len(embedding)
-            padded_embedding = embedding + [0.0] * padding_length
-            nuevos_padded_embeddings.append(padded_embedding)
-
-        X_nuevos = np.array(nuevos_padded_embeddings)
+        #nuevos_padded_embeddings = []
+        #for embedding in embeddings:
+         #   padding_length = max_length - len(embedding)
+          #  padded_embedding = embedding + [0.0] * padding_length
+           # nuevos_padded_embeddings.append(padded_embedding)
+        # Aplicar PCA para reducir la dimensionalidad de las incrustaciones
+        pca = PCA(n_components=1489)  # Número de características esperadas por el modelo
+        X_nuevos = pca.fit_transform(embeddings)
+        #X_nuevos = np.array(nuevos_padded_embeddings)
         
 
         return X_nuevos
