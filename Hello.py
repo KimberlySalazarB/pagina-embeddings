@@ -100,9 +100,9 @@ def obtener_incrustaciones(data, column_name, api_key):
             nuevos_padded_embeddings.append(padded_embedding)
 
         X_nuevos = np.array(nuevos_padded_embeddings)
-        df_resultados = pd.DataFrame(X_nuevos)
+        
 
-        return df_resultados
+        return X_nuevos
 
     except Exception as e:
         print("Error general al obtener incrustaciones:", e)
