@@ -76,8 +76,9 @@ def obtener_incrustaciones(data,column_name,api_key):
     nuevos_padded_embeddings = [embedding + [0.0] * (max_length - len(embedding)) for embedding in data['Embeddings']]
 
     X_nuevos = np.array(nuevos_padded_embeddings)
+    df_resultados = pd.DataFrame(X_nuevos)
 
-    return X_nuevos
+    return df_resultados
 
 
 # Función principal
