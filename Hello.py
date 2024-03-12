@@ -170,7 +170,9 @@ def run():
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
+                
                 X_nuevos = obtener_incrustaciones(data, column_name, api_key)
+                X_nuevos = X_nuevos.reshape(-1, 1)
                 st.write(X_nuevos)
                 # Añadir ceros adicionales para igualar el número de características esperado por el modelo
                 #X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
