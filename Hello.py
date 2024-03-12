@@ -19,6 +19,7 @@ import pandas as pd
 import numpy as np
 import requests
 import openai
+import pickle
 from openai import OpenAI
 #from openai import ChatCompletion
 from PIL import Image
