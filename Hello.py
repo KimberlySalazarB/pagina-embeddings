@@ -91,12 +91,12 @@ def obtener_incrustaciones(data, column_name, api_key):
             return None
 
         # Obtener la longitud máxima de las incrustaciones
-        max_length = max(len(embedding) for embedding in embeddings)
+        max_length = 2000
 
         # Aplicar padding a las incrustaciones para que todas tengan la misma longitud
         nuevos_padded_embeddings = []
         for embedding in embeddings:
-            padding_length = max_length - len(embedding)
+            padding_length = max_length - len(embedding) #2000
             padded_embedding = embedding + [0.0] * padding_length
             nuevos_padded_embeddings.append(padded_embedding)
 
