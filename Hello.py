@@ -175,12 +175,8 @@ def run():
                 # Hacer predicciones con el modelo cargado utilizando los datos con padding
                 # warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
                 predicciones_nuevas = modelo_cargado.predict(X_nuevos)
+                st.write(predicciones_nuevas)
                 
-                if 'Clasificación_gpt_4' not in data.columns:
-                    data['Clasificación_gpt_4'] = ''
-                for index, row in data.iterrows():
-                    data.at[index, 'Clasificación_gpt_4'] = predicciones_nuevas
-                    st.write(data)
 
         except Exception as e:
             st.error(f"Error al cargar el archivo: {e}")
