@@ -202,7 +202,7 @@ def run():
                 st.dataframe(comentarios_antivacunas)
         else:
             st.write("No se encontraron comentarios antivacunas.")
-
+    mostrar_comentarios_antivacunas = False
     # Mostrar comentarios antivacunas al hacer clic en un botón
     if st.button("Mostrar comentarios dudas"):
         comentarios_duda = data[data['Clasificación_gpt_4'] == 2][column_name].tolist()
