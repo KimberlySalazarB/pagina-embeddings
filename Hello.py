@@ -190,15 +190,15 @@ def run():
     #if contenido_imagen is not None:
         #imagen = Image.open(BytesIO(contenido_imagen))
         #st.image(imagen, caption='Imagen desde la URL')
-    comentarios_antivacunas = None
+
     # Mostrar comentarios antivacunas al hacer clic en un botón
-    if st.button("Mostrar comentarios antivacunas"):
+    if st.button("Mostrar comentarios antivacunas") and not mostrar_comentarios_antivacunas:
+        mostrar_comentarios_antivacunas = True
         comentarios_antivacunas = data[data['Clasificación_gpt_4'] == 0][column_name].tolist()
         st.subheader("Comentarios antivacunas encontrados:")
         if comentarios_antivacunas:
             for comentario in comentarios_antivacunas:
-                #st.write(comentario)
-                st.dataframe(comentarios_antivacunas)
+                st.write(comentario)
         else:
             st.write("No se encontraron comentarios antivacunas.")
 
