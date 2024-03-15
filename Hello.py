@@ -167,7 +167,7 @@ def run():
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
                 X_nuevos = obtener_incrustaciones(data, column_name, api_key)
-                st.write(X_nuevos)
+                #st.write(X_nuevos)
                 # Añadir ceros adicionales para igualar el número de características esperado por el modelo
                 #X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
                 #st.write(X_nuevos_con_padding)
@@ -175,7 +175,7 @@ def run():
                 # Hacer predicciones con el modelo cargado utilizando los datos con padding
                 # warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
                 predicciones_nuevas = modelo_cargado.predict(X_nuevos)
-                st.write(predicciones_nuevas)
+                #st.write(predicciones_nuevas)
                 # Agregar una nueva columna "Clasificación_gpt_4" con los valores de las predicciones
                 data['Clasificación_gpt_4'] = predicciones_nuevas
                 st.write(data)
@@ -184,11 +184,11 @@ def run():
             st.error(f"Error al cargar el archivo: {e}")
 
     # Mostrar la imagen desde una URL
-    url_imagen = "https://raw.githubusercontent.com/KimberlySalazarB/paginaprueba/main/Imagen3.jpg"
-    contenido_imagen = obtener_contenido_archivo(url_imagen)
-    if contenido_imagen is not None:
-        imagen = Image.open(BytesIO(contenido_imagen))
-        st.image(imagen, caption='Imagen desde la URL')
+    #url_imagen = "https://raw.githubusercontent.com/KimberlySalazarB/paginaprueba/main/Imagen3.jpg"
+    #contenido_imagen = obtener_contenido_archivo(url_imagen)
+    #if contenido_imagen is not None:
+        #imagen = Image.open(BytesIO(contenido_imagen))
+        #st.image(imagen, caption='Imagen desde la URL')
 
     # Mostrar comentarios antivacunas al hacer clic en un botón
     if st.button("Mostrar comentarios antivacunas"):
@@ -196,17 +196,17 @@ def run():
         st.subheader("Comentarios antivacunas encontrados:")
         if comentarios_antivacunas:
             for comentario in comentarios_antivacunas:
-                st.write(comentario)
+                st.dataframe(comentarios_antivacunas)
         else:
             st.write("No se encontraron comentarios antivacunas.")
 
     # Mostrar comentarios antivacunas al hacer clic en un botón
     if st.button("Mostrar comentarios dudas"):
-        comentarios_antivacunas = data[data['Clasificación_gpt_4'] == 2][column_name].tolist()
+        comentarios_duda = data[data['Clasificación_gpt_4'] == 2][column_name].tolist()
         st.subheader("Comentarios de dudas:")
-        if comentarios_antivacunas:
-            for comentario in comentarios_antivacunas:
-                st.write(comentario)
+        if comentarios_duda:
+            for comentario in comentarios_duda:
+                st.dataframe(comentarios_duda)
         else:
             st.write("No se encontraron comentarios dudas.")
                     
