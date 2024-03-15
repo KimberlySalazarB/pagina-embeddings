@@ -176,7 +176,9 @@ def run():
                 # warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
                 predicciones_nuevas = modelo_cargado.predict(X_nuevos)
                 st.write(predicciones_nuevas)
-                
+                # Agregar una nueva columna "Clasificación_gpt_4" con los valores de las predicciones
+                data['Clasificación_gpt_4'] = predicciones_nuevas
+                st.write(data)
 
         except Exception as e:
             st.error(f"Error al cargar el archivo: {e}")
