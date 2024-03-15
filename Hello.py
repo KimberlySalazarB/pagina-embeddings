@@ -192,8 +192,7 @@ def run():
         #st.image(imagen, caption='Imagen desde la URL')
 
     # Mostrar comentarios antivacunas al hacer clic en un botón
-    if st.button("Mostrar comentarios antivacunas") and not mostrar_comentarios_antivacunas:
-        mostrar_comentarios_antivacunas = True
+    if st.button("Mostrar comentarios antivacunas"):
         comentarios_antivacunas = data[data['Clasificación_gpt_4'] == 0][column_name].tolist()
         st.subheader("Comentarios antivacunas encontrados:")
         if comentarios_antivacunas:
