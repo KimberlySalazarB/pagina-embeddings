@@ -45,7 +45,7 @@ def obtener_contenido_archivo(url):
 
 #modelo
 def modelo():
-    url_archivo = "https://raw.githubusercontent.com/KimberlySalazarB/pagina-embeddings/main/modelo_clasificacion.pkl"
+    url_archivo = "https://raw.githubusercontent.com/KimberlySalazarB/pagina-embeddings/main/modelo_clasificacionpickle.pkl"
     contenido = obtener_contenido_archivo(url_archivo)
     if contenido is not None:
         return contenido
