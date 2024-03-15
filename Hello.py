@@ -197,7 +197,7 @@ def run():
         st.subheader("Comentarios antivacunas encontrados:")
         if comentarios_antivacunas:
             for comentario in comentarios_antivacunas:
-                st.dataframe(comentarios_antivacunas)
+                st.dataframe(comentario)
         else:
             st.write("No se encontraron comentarios antivacunas.")
 
