@@ -192,14 +192,14 @@ def run():
         #st.image(imagen, caption='Imagen desde la URL')
 
     # Mostrar comentarios antivacunas al hacer clic en un botón
-    if st.button("Mostrar comentarios antivacunas"):
+    if st.button("Mostrar comentarios antivacunas") and not mostrar_comentarios_antivacunas:
+        mostrar_comentarios_antivacunas = True
         comentarios_antivacunas = data[data['Clasificación_gpt_4'] == 0][column_name].tolist()
         st.subheader("Comentarios antivacunas encontrados:")
         if comentarios_antivacunas:
             for comentario in comentarios_antivacunas:
+                #st.write(comentario)
                 st.dataframe(comentarios_antivacunas)
-        # Agregar los comentarios mostrados al conjunto de comentarios mostrados
-                comentarios_mostrados.update(comentarios_antivacunas)
         else:
             st.write("No se encontraron comentarios antivacunas.")
 
