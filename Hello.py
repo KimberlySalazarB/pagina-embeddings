@@ -195,7 +195,7 @@ def run():
     if st.button("Mostrar comentarios antivacunas"):
         comentarios_antivacunas = data[data['Clasificación_gpt_4'] == 0][column_name].tolist()
         st.subheader("Comentarios antivacunas encontrados:")
-        if not comentarios_antivacunas.empty:
+        if comentarios_antivacunas:
             for comentario in comentarios_antivacunas:
                 st.dataframe(comentarios_antivacunas)
         else:
