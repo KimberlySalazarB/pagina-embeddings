@@ -214,11 +214,11 @@ def run():
             st.write("No se encontraron comentarios dudas.")
 
     
-    llm= api_panda(api_key)
-    df = SmartDataframe(data, config={"llm":llm})
-    consulta = st.text_input("Ingrese su pregunta respecto a los comentarios:")
-    rspen = df.chat(consulta)
-    st.write(rspen)
+    #llm= api_panda(api_key)
+    #df = SmartDataframe(data, config={"llm":llm})
+    #consulta = st.text_input("Ingrese su pregunta respecto a los comentarios:")
+    #rspen = df.chat(consulta)
+    #st.write(rspen)
 
 if __name__ == "__main__":
     run()
