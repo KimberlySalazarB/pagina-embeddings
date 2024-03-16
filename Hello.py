@@ -24,7 +24,7 @@ from openai import OpenAI
 #from openai import ChatCompletion
 #from PIL import Image
 #from io import BytesIO
-#import subprocess
+import subprocess
 from openai import OpenAI
 import sklearn
 #from sklearn.exceptions import InconsistentVersionWarning
