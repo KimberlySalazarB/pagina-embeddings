@@ -22,14 +22,15 @@ import openai
 import pickle
 from openai import OpenAI
 #from openai import ChatCompletion
-from PIL import Image
-from io import BytesIO
-import subprocess
+#from PIL import Image
+#from io import BytesIO
+#import subprocess
 from openai import OpenAI
 import sklearn
-from sklearn.exceptions import InconsistentVersionWarning
-import warnings
-
+#from sklearn.exceptions import InconsistentVersionWarning
+#import warnings
+from pandasai import SmartDataframe
+from pandasai.llm import OpenAI
 
 
 
@@ -210,6 +211,14 @@ def run():
                 st.write(comentario)
         else:
             st.write("No se encontraron comentarios dudas.")
+    llm = OpenAI(api_token=api_key)
+    df = SmartDataframe(data, config={"llm":llm})
+    st.write("Consulta sobre tu data:")
+    consulta = st.text_input("Ingrese su pregunta:")
+    rspen = df.chat(consulta)
+    st.write(rspen)
+
+    
                     
 if __name__ == "__main__":
     run()
