@@ -111,9 +111,9 @@ def obtener_incrustaciones(data, column_name, api_key):
         print("Error general al obtener incrustaciones:", e)
         return None
 
-def api_panda( api_key):
-    llm = OpenAI(api_token=api_key)
-    return llm
+#def api_panda( api_key):
+ #   llm = OpenAI(api_token=api_key)
+  #  return llm
 # Función principal
 def run():
     st.set_page_config(
