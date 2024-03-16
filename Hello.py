@@ -31,8 +31,7 @@ import sklearn
 from sklearn.exceptions import InconsistentVersionWarning
 import warnings
 from pandasai import SmartDataframe
-from pandasai.llm import OpenAI
-
+from pandasai.llm.openai import OpenAI
 
 
 # Función para obtener el contenido de un archivo desde una URL
