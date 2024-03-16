@@ -150,7 +150,7 @@ def run():
 
     column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
     
-    st.write("Versión de scikit-learn:", sklearn.__version__)
+    #st.write("Versión de scikit-learn:", sklearn.__version__)
                       
     uploaded_file = st.file_uploader("Cargar archivo", type=["csv", "xlsx"])
 
