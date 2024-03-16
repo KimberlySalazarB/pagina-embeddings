@@ -27,8 +27,8 @@ from openai import OpenAI
 import subprocess
 from openai import OpenAI
 import sklearn
-#from sklearn.exceptions import InconsistentVersionWarning
-#import warnings
+from sklearn.exceptions import InconsistentVersionWarning
+import warnings
 from pandasai import SmartDataframe
 from pandasai.llm import OpenAI
 
