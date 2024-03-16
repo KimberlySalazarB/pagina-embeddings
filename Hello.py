@@ -18,14 +18,14 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import requests
-import openai
+#import openai
 import pickle
 from openai import OpenAI
 #from openai import ChatCompletion
 from PIL import Image
 from io import BytesIO
 import subprocess
-from openai import OpenAI
+#from openai import OpenAI
 import sklearn
 from sklearn.exceptions import InconsistentVersionWarning
 import warnings
