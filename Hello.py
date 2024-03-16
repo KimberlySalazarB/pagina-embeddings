@@ -29,7 +29,8 @@ from openai import OpenAI
 import sklearn
 from sklearn.exceptions import InconsistentVersionWarning
 import warnings
-
+from pandasai import SmartDataframe
+from pandasai.llm import OpenAI
 
 
 
@@ -211,6 +212,13 @@ def run():
                 st.write(comentario)
         else:
             st.write("No se encontraron comentarios dudas.")
-                    
+
+    llm = OpenAI(api_token=api_key)
+
+    df = SmartDataframe(data, config={"llm":llm})
+    consulta = st.text_input("Ingrese su pregunta respecto a los comentarios:")
+    rspen = df.chat(consulta)
+    st.write(rspen)
+
 if __name__ == "__main__":
     run()
