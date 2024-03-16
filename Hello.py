@@ -18,14 +18,14 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import requests
-#import openai
+import openai
 import pickle
 from openai import OpenAI
 #from openai import ChatCompletion
 from PIL import Image
 from io import BytesIO
 import subprocess
-#from openai import OpenAI
+from openai import OpenAI
 import sklearn
 from sklearn.exceptions import InconsistentVersionWarning
 import warnings
@@ -36,6 +36,7 @@ import warnings
 # Función para obtener el contenido de un archivo desde una URL
 def obtener_contenido_archivo(url):
     try:
+        
         respuesta = requests.get(url)
         respuesta.raise_for_status()  # Lanza una excepción si hay un error en la solicitud
         return respuesta.content
