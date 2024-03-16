@@ -20,6 +20,7 @@ import numpy as np
 import requests
 import openai
 import pickle
+import yaml
 from openai import OpenAI
 #from openai import ChatCompletion
 from PIL import Image
