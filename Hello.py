@@ -168,7 +168,6 @@ def run():
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
-                st.write(api_key)
                 X_nuevos = obtener_incrustaciones(data, column_name, api_key)
                 st.write(X_nuevos)
                 # Añadir ceros adicionales para igualar el número de características esperado por el modelo
