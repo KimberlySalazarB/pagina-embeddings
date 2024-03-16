@@ -175,7 +175,7 @@ def run():
                 #st.write(X_nuevos_con_padding)
                 modelo_cargado = pickle.loads(modelo())
                 # Hacer predicciones con el modelo cargado utilizando los datos con padding
-                # warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+                warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
                 predicciones_nuevas = modelo_cargado.predict(X_nuevos)
                 #st.write(predicciones_nuevas)
                 st.write("Datos clasificados:")
