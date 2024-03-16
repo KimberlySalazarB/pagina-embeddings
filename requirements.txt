@@ -7,3 +7,4 @@ openpyxl
 openai
 scikit-learn
 pandasai
+pyyaml
