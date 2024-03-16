@@ -6,4 +6,4 @@ streamlit
 openpyxl
 openai
 scikit-learn
-pandasai==0.2.2
+pandasai
