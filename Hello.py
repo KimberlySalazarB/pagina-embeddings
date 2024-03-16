@@ -72,7 +72,7 @@ def obtener_incrustaciones(data, column_name, api_key):
 
         # Seleccionar modelo
         client = OpenAI(api_key=api_key)
-        print(api_key)
+        
         # Verificar la estructura de los datos
         if column_name not in data.columns:
             print("Error: La columna especificada no existe en los datos.")
@@ -109,6 +109,7 @@ def obtener_incrustaciones(data, column_name, api_key):
 
     except Exception as e:
         print("Error general al obtener incrustaciones:", e)
+        print(api_key)
         return None
 
 #def api_panda( api_key):
