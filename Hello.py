@@ -108,8 +108,7 @@ def obtener_incrustaciones(data, column_name, api_key):
         return X_nuevos
 
     except Exception as e:
-        print("Error general al obtener incrustaciones:", e)
-        print(api_key)
+        st.warning("Error general al obtener incrustaciones:", e)
         return None
 
 #def api_panda( api_key):
