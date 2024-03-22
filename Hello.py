@@ -115,6 +115,11 @@ def obtener_incrustaciones(data, column_name, api_key):
     #llm = pandaAI(api_key=api_key)
     #return llm
 # Función principal
+
+# Función para descargar DataFrame como archivo CSV
+def download_csv(data):
+    csv = data.to_csv(index=False)
+    return csv
 def run():
     st.set_page_config(
         page_title="Hello",
@@ -194,13 +199,20 @@ def run():
         #imagen = Image.open(BytesIO(contenido_imagen))
         #st.image(imagen, caption='Imagen desde la URL')
 
+
     # Mostrar comentarios antivacunas al hacer clic en un botón
     if st.button("Mostrar comentarios antivacunas"):
         comentarios_antivacunas = data[data['Clasificación_gpt_4'] == 0][column_name].tolist()
         st.subheader("Comentarios antivacunas encontrados:")
         if comentarios_antivacunas:
+            comentario2=[]
             for comentario in comentarios_antivacunas:
-                st.write(comentario)
+                #st.write(comentario)
+                comentario2.append({'Comentarios antivacunas': comentario})
+                
+            df_comentario2 = pd.DataFrame(comentario2)
+            # Mostrar el DataFrame con el comentario
+            st.dataframe(df_comentario2)
         else:
             st.write("No se encontraron comentarios antivacunas.")
 
@@ -209,8 +221,22 @@ def run():
         comentarios_duda = data[data['Clasificación_gpt_4'] == 2][column_name].tolist()
         st.subheader("Comentarios de dudas:")
         if comentarios_duda:
+            comentario1=[]
             for comentario in comentarios_duda:
-                st.write(comentario)
+                #st.write(comentario)
+                # Crear un DataFrame con el comentario
+                comentario1.append({'Comentarios dudas': comentario})
+                
+            df_comentario = pd.DataFrame(comentario1)
+            # Mostrar el DataFrame con el comentario
+            st.dataframe(df_comentario)
+            # Agregar el botón de descarga
+            st.download_button(
+            label="Descargar comentarios CSV",
+            data=download_csv(df_comentario),
+            file_name="comentarios_dudas.csv",
+            mime="text/csv"
+            )
         else:
             st.write("No se encontraron comentarios dudas.")
 
