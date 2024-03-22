@@ -213,6 +213,13 @@ def run():
             df_comentario2 = pd.DataFrame(comentario2)
             # Mostrar el DataFrame con el comentario
             st.dataframe(df_comentario2)
+            # Agregar el botón de descarga
+            st.download_button(
+            label="Descargar comentarios CSV",
+            data=download_csv(df_comentario2),
+            file_name="comentarios_antivacunas.csv",
+            mime="text/csv"
+            )
         else:
             st.write("No se encontraron comentarios antivacunas.")
 
