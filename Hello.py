@@ -215,7 +215,7 @@ def run():
             st.dataframe(df_comentario2)
             # Agregar el botón de descarga
             st.download_button(
-            label="Descargar comentarios CSV",
+            label="Descargar comentarios antivacunas CSV",
             data=download_csv(df_comentario2),
             file_name="comentarios_antivacunas.csv",
             mime="text/csv"
@@ -239,7 +239,7 @@ def run():
             st.dataframe(df_comentario)
             # Agregar el botón de descarga
             st.download_button(
-            label="Descargar comentarios CSV",
+            label="Descargar comentarios dudas CSV",
             data=download_csv(df_comentario),
             file_name="comentarios_dudas.csv",
             mime="text/csv"
