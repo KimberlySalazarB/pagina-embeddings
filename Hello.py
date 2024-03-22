@@ -153,6 +153,7 @@ def run():
     #st.write("Versión de scikit-learn:", sklearn.__version__)
                       
     uploaded_file = st.file_uploader("Cargar archivo", type=["csv", "xlsx"])
+    
 
     if uploaded_file is not None:
         try:
