@@ -1,0 +1,916 @@
+2024-03-22 20:58:54 [INFO] Question: 
+2024-03-22 20:58:54 [INFO] Running PandasAI with openai LLM...
+2024-03-22 20:58:54 [INFO] Prompt ID: 31a923c4-3db0-4c57-8a1a-f8fee1b145c7
+2024-03-22 20:58:54 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-03-22 20:58:54 [INFO] Executing Step 0: ValidatePipelineInput
+2024-03-22 20:58:54 [INFO] Executing Step 1: CacheLookup
+2024-03-22 20:58:54 [INFO] Executing Step 2: PromptGeneration
+2024-03-22 20:58:54 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - 1.0
+      - 15.0
+      - .nan
+    - name: Comentarios
+      type: object
+      samples:
+      - "Y para los ni\xF1os cuando"
+      - "Buen d\xEDa a mi hija la vacune pero no recuerdo si le puse las dos dosis\
+        \ como puedo averiguar. Por favor gracias"
+      - "Todo lo que es prevenci\xF3n,es excelente"
+    - name: Topic
+      type: object
+      samples:
+      - "Dudas sobre la cantidad de dosis puestas a su ni\xF1a"
+      - "Aprobaci\xF3n de la publicaci\xF3n"
+      - "Decisi\xF3n de los padres al vacunar"
+    - name: Topic_c
+      type: int64
+      samples:
+      - 3
+      - 3
+      - 2
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 2
+      - 2
+      - 3
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-03-22 20:58:54 [INFO] Executing Step 3: CodeGenerator
+2024-03-22 20:58:57 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-03-22 20:58:57 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - 1.0
+      - 15.0
+      - .nan
+    - name: Comentarios
+      type: object
+      samples:
+      - "Y para los ni\xF1os cuando"
+      - "Buen d\xEDa a mi hija la vacune pero no recuerdo si le puse las dos dosis\
+        \ como puedo averiguar. Por favor gracias"
+      - "Todo lo que es prevenci\xF3n,es excelente"
+    - name: Topic
+      type: object
+      samples:
+      - "Dudas sobre la cantidad de dosis puestas a su ni\xF1a"
+      - "Aprobaci\xF3n de la publicaci\xF3n"
+      - "Decisi\xF3n de los padres al vacunar"
+    - name: Topic_c
+      type: int64
+      samples:
+      - 3
+      - 3
+      - 2
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 2
+      - 2
+      - 3
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-03-22 20:58:57 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {}
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+            ```
+            
+2024-03-22 20:58:57 [INFO] Executing Step 4: CachePopulation
+2024-03-22 20:58:57 [INFO] Executing Step 5: CodeExecution
+2024-03-22 20:58:57 [INFO] Saving charts to /workspaces/pagina-embeddings/exports/charts/temp_chart.png
+2024-03-22 20:58:57 [INFO] 
+Code running:
+```
+result = {}
+        ```
+2024-03-22 20:58:57 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+2024-03-22 20:58:57 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-03-22 20:58:57 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-03-22 20:58:57 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-03-22 20:58:57 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - 1.0
+      - 15.0
+      - .nan
+    - name: Comentarios
+      type: object
+      samples:
+      - "Y para los ni\xF1os cuando"
+      - "Buen d\xEDa a mi hija la vacune pero no recuerdo si le puse las dos dosis\
+        \ como puedo averiguar. Por favor gracias"
+      - "Todo lo que es prevenci\xF3n,es excelente"
+    - name: Topic
+      type: object
+      samples:
+      - "Dudas sobre la cantidad de dosis puestas a su ni\xF1a"
+      - "Aprobaci\xF3n de la publicaci\xF3n"
+      - "Decisi\xF3n de los padres al vacunar"
+    - name: Topic_c
+      type: int64
+      samples:
+      - 3
+      - 3
+      - 2
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 2
+      - 2
+      - 3
+
+
+The user asked the following question:
+### QUERY
+ 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {}
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+
+Fix the python code above and return the new python code:
+2024-03-22 20:58:57 [INFO] Executing Step 1: CodeGenerator
+2024-03-22 20:58:58 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-03-22 20:58:58 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - 1.0
+      - 15.0
+      - .nan
+    - name: Comentarios
+      type: object
+      samples:
+      - "Y para los ni\xF1os cuando"
+      - "Buen d\xEDa a mi hija la vacune pero no recuerdo si le puse las dos dosis\
+        \ como puedo averiguar. Por favor gracias"
+      - "Todo lo que es prevenci\xF3n,es excelente"
+    - name: Topic
+      type: object
+      samples:
+      - "Dudas sobre la cantidad de dosis puestas a su ni\xF1a"
+      - "Aprobaci\xF3n de la publicaci\xF3n"
+      - "Decisi\xF3n de los padres al vacunar"
+    - name: Topic_c
+      type: int64
+      samples:
+      - 3
+      - 3
+      - 2
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 2
+      - 2
+      - 3
+
+
+The user asked the following question:
+### QUERY
+ 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {}
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+
+Fix the python code above and return the new python code:
+            
+2024-03-22 20:58:58 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {
+    "type": "string",
+    "value": "The result of the analysis."
+}
+            ```
+            
+2024-03-22 20:58:58 [INFO] 
+Code running:
+```
+result = {'type': 'string', 'value': 'The result of the analysis.'}
+        ```
+2024-03-22 20:58:58 [INFO] Executing Step 6: ResultValidation
+2024-03-22 20:58:58 [INFO] Answer: {'type': 'string', 'value': 'The result of the analysis.'}
+2024-03-22 20:58:58 [INFO] Executing Step 7: ResultParsing
+2024-03-22 20:59:01 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:01 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:01 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:01 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:01 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:02 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:02 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:02 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:02 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:02 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:03 [INFO] Question: 
+2024-03-22 20:59:03 [INFO] Running PandasAI with openai LLM...
+2024-03-22 20:59:03 [INFO] Prompt ID: 3518525b-94e3-4b49-a245-c534eead8e4f
+2024-03-22 20:59:03 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-03-22 20:59:03 [INFO] Executing Step 0: ValidatePipelineInput
+2024-03-22 20:59:03 [INFO] Executing Step 1: CacheLookup
+2024-03-22 20:59:03 [INFO] Using cached response
+2024-03-22 20:59:03 [INFO] Executing Step 2: PromptGeneration
+2024-03-22 20:59:03 [INFO] Executing Step 2: Skipping...
+2024-03-22 20:59:03 [INFO] Executing Step 3: CodeGenerator
+2024-03-22 20:59:03 [INFO] Executing Step 3: Skipping...
+2024-03-22 20:59:03 [INFO] Executing Step 4: CachePopulation
+2024-03-22 20:59:03 [INFO] Executing Step 4: Skipping...
+2024-03-22 20:59:03 [INFO] Executing Step 5: CodeExecution
+2024-03-22 20:59:03 [INFO] Saving charts to /workspaces/pagina-embeddings/exports/charts/temp_chart.png
+2024-03-22 20:59:03 [INFO] 
+Code running:
+```
+result = {}
+        ```
+2024-03-22 20:59:03 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+2024-03-22 20:59:03 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-03-22 20:59:03 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-03-22 20:59:03 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-03-22 20:59:03 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - .nan
+      - 11.0
+      - 17.0
+    - name: Comentarios
+      type: object
+      samples:
+      - Prevencion Importante control medico
+      - Ya salen los religiosos a decir que solo deben tener sexo con 1 persona en
+        toda la vida hasta morir, y que el papiloma es un castigo de dios para los
+        pecadores :v
+      - "... no es decisi\xF3n de ellas. Es de los padres."
+    - name: Topic
+      type: object
+      samples:
+      - "Aprobaci\xF3n de la publicaci\xF3n"
+      - Comentario no relacionado a la vacuna
+      - vacuna para varones
+    - name: Topic_c
+      type: int64
+      samples:
+      - 3
+      - 2
+      - 3
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 3
+      - 2
+      - 2
+
+
+The user asked the following question:
+### QUERY
+ 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {}
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+
+Fix the python code above and return the new python code:
+2024-03-22 20:59:03 [INFO] Executing Step 1: CodeGenerator
+2024-03-22 20:59:05 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-03-22 20:59:05 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - .nan
+      - 11.0
+      - 17.0
+    - name: Comentarios
+      type: object
+      samples:
+      - Prevencion Importante control medico
+      - Ya salen los religiosos a decir que solo deben tener sexo con 1 persona en
+        toda la vida hasta morir, y que el papiloma es un castigo de dios para los
+        pecadores :v
+      - "... no es decisi\xF3n de ellas. Es de los padres."
+    - name: Topic
+      type: object
+      samples:
+      - "Aprobaci\xF3n de la publicaci\xF3n"
+      - Comentario no relacionado a la vacuna
+      - vacuna para varones
+    - name: Topic_c
+      type: int64
+      samples:
+      - 3
+      - 2
+      - 3
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 3
+      - 2
+      - 2
+
+
+The user asked the following question:
+### QUERY
+ 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {}
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+
+Fix the python code above and return the new python code:
+            
+2024-03-22 20:59:05 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {
+    "type": "dataframe",
+    "value": pd.DataFrame({})
+}
+            ```
+            
+2024-03-22 20:59:05 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': pd.DataFrame({})}
+        ```
+2024-03-22 20:59:05 [INFO] Executing Step 6: ResultValidation
+2024-03-22 20:59:05 [INFO] Answer: {'type': 'dataframe', 'value': Empty DataFrame
+Columns: []
+Index: []}
+2024-03-22 20:59:05 [INFO] Executing Step 7: ResultParsing
+2024-03-22 20:59:06 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:06 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:07 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:07 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:07 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:07 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:07 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:07 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:07 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:08 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:08 [INFO] Question: 
+2024-03-22 20:59:08 [INFO] Running PandasAI with openai LLM...
+2024-03-22 20:59:08 [INFO] Prompt ID: 4c9cc583-7f27-4a76-adfc-92d5a48ca7b5
+2024-03-22 20:59:08 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-03-22 20:59:08 [INFO] Executing Step 0: ValidatePipelineInput
+2024-03-22 20:59:08 [INFO] Executing Step 1: CacheLookup
+2024-03-22 20:59:08 [INFO] Using cached response
+2024-03-22 20:59:08 [INFO] Executing Step 2: PromptGeneration
+2024-03-22 20:59:08 [INFO] Executing Step 2: Skipping...
+2024-03-22 20:59:08 [INFO] Executing Step 3: CodeGenerator
+2024-03-22 20:59:08 [INFO] Executing Step 3: Skipping...
+2024-03-22 20:59:08 [INFO] Executing Step 4: CachePopulation
+2024-03-22 20:59:08 [INFO] Executing Step 4: Skipping...
+2024-03-22 20:59:08 [INFO] Executing Step 5: CodeExecution
+2024-03-22 20:59:08 [INFO] Saving charts to /workspaces/pagina-embeddings/exports/charts/temp_chart.png
+2024-03-22 20:59:08 [INFO] 
+Code running:
+```
+result = {}
+        ```
+2024-03-22 20:59:08 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+2024-03-22 20:59:08 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-03-22 20:59:08 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-03-22 20:59:08 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-03-22 20:59:08 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - 24.0
+      - 4.0
+      - .nan
+    - name: Comentarios
+      type: object
+      samples:
+      - Prevencion Importante control medico
+      - "Y para los ni\xF1os cuando"
+      - "Buen d\xEDa a mi hija la vacune pero no recuerdo si le puse las dos dosis\
+        \ como puedo averiguar. Por favor gracias"
+    - name: Topic
+      type: object
+      samples:
+      - "Chequeos peri\xF3dicos como prevenci\xF3n"
+      - Comentario no relacionado a la vacuna
+      - vacuna para varones
+    - name: Topic_c
+      type: int64
+      samples:
+      - 2
+      - 2
+      - 3
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 2
+      - 3
+      - 3
+
+
+The user asked the following question:
+### QUERY
+ 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {}
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+
+Fix the python code above and return the new python code:
+2024-03-22 20:59:08 [INFO] Executing Step 1: CodeGenerator
+2024-03-22 20:59:09 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-03-22 20:59:09 [INFO] Prompt used:
+            dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - 24.0
+      - 4.0
+      - .nan
+    - name: Comentarios
+      type: object
+      samples:
+      - Prevencion Importante control medico
+      - "Y para los ni\xF1os cuando"
+      - "Buen d\xEDa a mi hija la vacune pero no recuerdo si le puse las dos dosis\
+        \ como puedo averiguar. Por favor gracias"
+    - name: Topic
+      type: object
+      samples:
+      - "Chequeos peri\xF3dicos como prevenci\xF3n"
+      - Comentario no relacionado a la vacuna
+      - vacuna para varones
+    - name: Topic_c
+      type: int64
+      samples:
+      - 2
+      - 2
+      - 3
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 2
+      - 3
+      - 3
+
+
+The user asked the following question:
+### QUERY
+ 
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {}
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/pipelines/chat/code_execution.py", line 76, in execute
+    if not OutputValidator.validate_result(result):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vscode/.local/lib/python3.11/site-packages/pandasai/helpers/output_validator.py", line 70, in validate_result
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Result must be in the format of dictionary of type and value
+
+
+Fix the python code above and return the new python code:
+            
+2024-03-22 20:59:09 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result = {
+    "type": "dataframe",
+    "value": pd.DataFrame({})
+}
+            ```
+            
+2024-03-22 20:59:09 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': pd.DataFrame({})}
+        ```
+2024-03-22 20:59:09 [INFO] Executing Step 6: ResultValidation
+2024-03-22 20:59:09 [INFO] Answer: {'type': 'dataframe', 'value': Empty DataFrame
+Columns: []
+Index: []}
+2024-03-22 20:59:09 [INFO] Executing Step 7: ResultParsing
+2024-03-22 20:59:39 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:39 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:39 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:39 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:40 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:40 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:40 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:40 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:40 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:40 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 20:59:41 [INFO] Question: What are the sentences in Comment column talking about? You can mention no more than 10 possible themes and those themes can be a sentence instead of a single word
+2024-03-22 20:59:41 [INFO] Running PandasAI with openai LLM...
+2024-03-22 20:59:41 [INFO] Prompt ID: 35b4e8c9-aaf2-423e-b19a-08f484d58f9a
+2024-03-22 20:59:41 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-03-22 20:59:41 [INFO] Executing Step 0: ValidatePipelineInput
+2024-03-22 20:59:41 [INFO] Executing Step 1: CacheLookup
+2024-03-22 20:59:41 [INFO] Executing Step 2: PromptGeneration
+2024-03-22 20:59:41 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - 2.0
+      - .nan
+      - 22.0
+    - name: Comentarios
+      type: object
+      samples:
+      - "\U0001F4A5 Si necesitas una buena respuesta a tus consultas y consejos para\
+        \ una buena alimentaci\xF3n \U0001F957\U0001F352\U0001F376\U0001F951\u2705\
+        \ \xDAnete a \xE9sta gran comunidad \U0001F609https://chat.whatsapp.com/FsUpBpMQRnZCUc81RK5vuc\U0001F4A5\
+        \ Te ayudamos a recibir informaci\xF3n de Nutrici\xF3n, Metabolismo y Salud\
+        \ \U0001F3CB\U0001F9D8\U0001F3FB\u200D\u2640\U0001F6B4\U0001F3FC"
+      - "Todo lo que es prevenci\xF3n,es excelente"
+      - "S\xF3lo para ni\xF1as es la vacuna ?"
+    - name: Topic
+      type: object
+      samples:
+      - "Chequeos peri\xF3dicos como prevenci\xF3n"
+      - "Decisi\xF3n de los padres al vacunar"
+      - vacuna para varones
+    - name: Topic_c
+      type: int64
+      samples:
+      - 3
+      - 2
+      - 3
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 2
+      - 3
+      - 2
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the sentences in Comment column talking about? You can mention no more than 10 possible themes and those themes can be a sentence instead of a single word
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-03-22 20:59:41 [INFO] Executing Step 3: CodeGenerator
+2024-03-22 20:59:44 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-03-22 20:59:44 [ERROR] Pipeline failed on step 3: No code found in the response
+2024-03-22 21:01:21 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:21 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:21 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:21 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:21 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:22 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:22 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:22 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:22 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:22 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2024-03-22 21:01:22 [INFO] Question: What are the sentences in Comment column talking about? You can mention no more than 10 possible themes and those themes can be a sentence instead of a single word
+2024-03-22 21:01:22 [INFO] Running PandasAI with openai LLM...
+2024-03-22 21:01:22 [INFO] Prompt ID: aac2f26f-db63-401e-9372-b1311336587c
+2024-03-22 21:01:22 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-03-22 21:01:22 [INFO] Executing Step 0: ValidatePipelineInput
+2024-03-22 21:01:22 [INFO] Executing Step 1: CacheLookup
+2024-03-22 21:01:22 [INFO] Executing Step 2: PromptGeneration
+2024-03-22 21:01:22 [INFO] Using prompt: dfs[0]:
+  name: null
+  description: null
+  type: pd.DataFrame
+  rows: 10
+  columns: 5
+  schema:
+    fields:
+    - name: raiz
+      type: float64
+      samples:
+      - 24.0
+      - 12.0
+      - .nan
+    - name: Comentarios
+      type: object
+      samples:
+      - "\U0001F4A5 Si necesitas una buena respuesta a tus consultas y consejos para\
+        \ una buena alimentaci\xF3n \U0001F957\U0001F352\U0001F376\U0001F951\u2705\
+        \ \xDAnete a \xE9sta gran comunidad \U0001F609https://chat.whatsapp.com/FsUpBpMQRnZCUc81RK5vuc\U0001F4A5\
+        \ Te ayudamos a recibir informaci\xF3n de Nutrici\xF3n, Metabolismo y Salud\
+        \ \U0001F3CB\U0001F9D8\U0001F3FB\u200D\u2640\U0001F6B4\U0001F3FC"
+      - "S\xF3lo para ni\xF1as es la vacuna ?"
+      - "Prevenci\xF3n primaria ! \U0001F60D"
+    - name: Topic
+      type: object
+      samples:
+      - Comentario no relacionado a la vacuna
+      - "Chequeos peri\xF3dicos como prevenci\xF3n"
+      - "Decisi\xF3n de los padres al vacunar"
+    - name: Topic_c
+      type: int64
+      samples:
+      - 2
+      - 3
+      - 3
+    - name: "Clasificaci\xF3n_gpt_4"
+      type: int64
+      samples:
+      - 2
+      - 2
+      - 3
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the sentences in Comment column talking about? You can mention no more than 10 possible themes and those themes can be a sentence instead of a single word
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-03-22 21:01:22 [INFO] Executing Step 3: CodeGenerator
+2024-03-22 21:01:23 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-03-22 21:01:23 [ERROR] Pipeline failed on step 3: No code found in the response

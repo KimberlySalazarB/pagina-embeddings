@@ -31,7 +31,7 @@ import sklearn
 from sklearn.exceptions import InconsistentVersionWarning
 import warnings
 from pandasai import SmartDataframe
-#from pandasai.llm import OpenAI
+#from pandasai.llm import OpenAI as pandaAI
 
 
 # Función para obtener el contenido de un archivo desde una URL
@@ -111,9 +111,9 @@ def obtener_incrustaciones(data, column_name, api_key):
         st.write("Error general al obtener incrustaciones:", e)
         return None
 
-#def api_panda( api_key):
- #   llm = OpenAI(api_key=api_key)
-  #  return llm
+#def api_panda(api_key):
+    #llm = pandaAI(api_key=api_key)
+    #return llm
 # Función principal
 def run():
     st.set_page_config(
@@ -214,7 +214,7 @@ def run():
             st.write("No se encontraron comentarios dudas.")
 
     
-    #llm= api_panda(api_key)
+    #llm= pandaAI(api_token=api_key)
     #df = SmartDataframe(data, config={"llm":llm})
     #consulta = st.text_input("Ingrese su pregunta respecto a los comentarios:")
     #rspen = df.chat(consulta)
