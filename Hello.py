@@ -132,9 +132,11 @@ def run():
         """
         Aquí, nos sumergimos en conversaciones significativas relacionadas con la vacuna contra el 
         Virus del Papiloma Humano (VPH). Utilizamos un clasificador especializado para analizar y 
-        categorizar los comentarios de manera precisa y eficiente.
-        El objetivo principal es dar los comentarios antivacunas para entender las diversas perspectivas
-        expresadas por la comunidad en torno a la vacuna contra el VPH.  
+        categorizar los comentarios con una presición en clasificar comentarios antivacunas de 0.917 
+        y comentarios de dudas de 0.9.
+        El objetivo principal de categorizar y analizar los comentarios recibidos en las publicaciones, 
+        con el fin de identificar las dudas y preocupaciones del público objetivo, así como las 
+        opiniones antivacunas. 
 
         Nuestro clasificador asigna números específicos a cada comentario 
         para reflejar la postura del autor. La clasificación es la siguiente:
