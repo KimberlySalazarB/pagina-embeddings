@@ -107,9 +107,9 @@ def obtener_incrustaciones(data, column_name, api_key):
 
         return X_nuevos
     
-    #except Exception as e:
-     #   st.write("Error general al obtener incrustaciones:", e)
-      #  return None
+    except Exception as e:
+        st.write("Error general al obtener incrustaciones:", e)
+        return None
 
 
 # Función principal
@@ -215,8 +215,8 @@ def run():
     # Manejar error de límite de velocidad (recomendamos usar un retraso exponencial)
             st.error(f"La solicitud a la API de OpenAI excedió el límite de velocidad: {e}")
             pass
-        except Exception as e:
-            st.error(f"Error al cargar el archivo: {e}")
+        #except Exception as e:
+         #   st.error(f"Error al cargar el archivo: {e}")
             
 
 
