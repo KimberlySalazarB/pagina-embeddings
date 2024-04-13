@@ -149,11 +149,24 @@ def run():
     )
 
     # Botón para ocultar/mostrar la API de OpenAI
+    
     api_key = st.text_input("API Key de OpenAI", type="password")
     # Mostrar advertencia si no se ha ingresado la API Key
-    if not api_key:
+    try:
+        if not api_key:
         st.warning("Ingrese su API Key de OpenAI.")
         return
+        client = OpenAI(api_key=api_key)
+        
+    except openai.AuthenticationError as e:
+        st.error("Error de autenticación: La clave de la API no es válida o ha expirado.")
+        st.write("Por favor, asegúrate de que la clave de la API sea correcta y esté activa.")
+        st.write("También verifica que estés siguiendo el formato correcto al proporcionar la clave de la API.")
+        return
+    
+        
+    
+        
     
                       
     uploaded_file = st.file_uploader("Cargar archivo", type=["csv", "xlsx"])
