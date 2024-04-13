@@ -155,20 +155,6 @@ def run():
         if not api_key:
             st.warning("Ingrese su API Key de OpenAI.")
             return
-    except openai.APIError as e:
-    # Manejar error de la API aquí, por ejemplo, reintentar o registrar
-            st.error(f"La API de OpenAI devolvió un Error de API: {e}")
-            pass
-
-    except openai.APIConnectionError as e:
-    # Manejar error de conexión aquí
-        st.error(f"No se pudo conectar a la API de OpenAI: {e}")
-        pass
-
-    except openai.RateLimitError as e:
-    # Manejar error de límite de velocidad (recomendamos usar un retraso exponencial)
-        st.error(f"La solicitud a la API de OpenAI excedió el límite de velocidad: {e}")
-        pass
     except Exception as e:
     # Manejar cualquier excepción que ocurra aquí
         st.error(f"Se produjo un error al procesar la API Key: {e}")
@@ -215,10 +201,6 @@ def run():
                 data['Clasificación_gpt_4'] = predicciones_nuevas
                 st.write(data)
 
-        except openai.AuthenticationError as e:
-            st.error("Error de autenticación: La clave de la API no es válida o ha expirado.")
-            st.write("Por favor, asegúrate de que la clave de la API sea correcta y esté activa.")
-            st.write("También verifica que estés siguiendo el formato correcto al proporcionar la clave de la API.")
         
         except Exception as e:
            st.error(f"Error al cargar el archivo: {e}")
