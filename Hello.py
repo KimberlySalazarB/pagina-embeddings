@@ -67,7 +67,7 @@ def obtener_incrustaciones(data, column_name, api_key):
     try:
         # Verificar la API Key
         if not api_key:
-            print("Error: API Key de OpenAI no proporcionada.")
+            st.write("Error: API Key de OpenAI no proporcionada.")
             return None
 
         # Seleccionar modelo
@@ -75,7 +75,7 @@ def obtener_incrustaciones(data, column_name, api_key):
         
         # Verificar la estructura de los datos
         if column_name not in data.columns:
-            print("Error: La columna especificada no existe en los datos.")
+            st.write("Error: La columna especificada no existe en los datos.")
             return None
 
         # Iterar a través de la columna y obtener las incrustaciones para cada texto
