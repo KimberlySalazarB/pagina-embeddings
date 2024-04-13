@@ -110,11 +110,18 @@ def obtener_incrustaciones(data, column_name, api_key):
     except Exception as e:
         st.write("Error general al obtener incrustaciones:", e)
         return None
-    except openai.AuthenticationError as e:
-        st.error("Error de autenticación: La clave de la API no es válida o ha expirado.")
-        st.write("Por favor, asegúrate de que la clave de la API sea correcta y esté activa.")
-        st.write("También verifica que estés siguiendo el formato correcto al proporcionar la clave de la API.")
-        return
+    except openai.APIError as e:
+  #Handle API error here, e.g. retry or log
+      st.write(f"OpenAI API returned an API Error: {e}")
+      pass
+    except openai.APIConnectionError as e:
+  #Handle connection error here
+      st.write(f"Failed to connect to OpenAI API: {e}")
+      pass
+    except openai.RateLimitError as e:
+  #Handle rate limit error (we recommend using exponential backoff)
+      st.write(f"OpenAI API request exceeded rate limit: {e}")
+      pass
 
 
 # Función principal
