@@ -111,10 +111,10 @@ def obtener_incrustaciones(data, column_name, api_key):
         st.write("Error general al obtener incrustaciones:", e)
         return None
     except openai.AuthenticationError as e:
-    st.error("Error de autenticación: La clave de la API no es válida o ha expirado.")
-    st.write("Por favor, asegúrate de que la clave de la API sea correcta y esté activa.")
-    st.write("También verifica que estés siguiendo el formato correcto al proporcionar la clave de la API.")
-    return
+        st.error("Error de autenticación: La clave de la API no es válida o ha expirado.")
+        st.write("Por favor, asegúrate de que la clave de la API sea correcta y esté activa.")
+        st.write("También verifica que estés siguiendo el formato correcto al proporcionar la clave de la API.")
+        return
 
 
 # Función principal
