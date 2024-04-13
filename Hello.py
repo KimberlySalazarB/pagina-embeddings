@@ -196,6 +196,11 @@ def run():
                 # Agregar una nueva columna "Clasificación_gpt_4" con los valores de las predicciones
                 data['Clasificación_gpt_4'] = predicciones_nuevas
                 st.write(data)
+
+        except openai.AuthenticationError as e:
+            st.error("Error de autenticación: La clave de la API no es válida o ha expirado.")
+            st.write("Por favor, asegúrate de que la clave de la API sea correcta y esté activa.")
+            st.write("También verifica que estés siguiendo el formato correcto al proporcionar la clave de la API.")
         except openai.APIError as e:
     # Manejar error de la API aquí, por ejemplo, reintentar o registrar
             print(f"La API de OpenAI devolvió un Error de API: {e}")
