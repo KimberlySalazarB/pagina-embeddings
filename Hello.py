@@ -203,17 +203,17 @@ def run():
             st.write("También verifica que estés siguiendo el formato correcto al proporcionar la clave de la API.")
         except openai.APIError as e:
     # Manejar error de la API aquí, por ejemplo, reintentar o registrar
-            print(f"La API de OpenAI devolvió un Error de API: {e}")
+            st.error(f"La API de OpenAI devolvió un Error de API: {e}")
             pass
 
         except openai.APIConnectionError as e:
     # Manejar error de conexión aquí
-            print(f"No se pudo conectar a la API de OpenAI: {e}")
+            st.error(f"No se pudo conectar a la API de OpenAI: {e}")
             pass
 
         except openai.RateLimitError as e:
     # Manejar error de límite de velocidad (recomendamos usar un retraso exponencial)
-            print(f"La solicitud a la API de OpenAI excedió el límite de velocidad: {e}")
+            st.error(f"La solicitud a la API de OpenAI excedió el límite de velocidad: {e}")
             pass
         except Exception as e:
             st.error(f"Error al cargar el archivo: {e}")
