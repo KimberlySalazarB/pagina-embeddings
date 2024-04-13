@@ -64,7 +64,6 @@ def parse_embeddings(embedding_str):
         # Si no se puede convertir, devuelve una lista vacía
         return []
 def obtener_incrustaciones(data, column_name, api_key):
-    errores=[]
     try:
         # Verificar la API Key
         if not api_key:
@@ -85,14 +84,9 @@ def obtener_incrustaciones(data, column_name, api_key):
             try:
                 embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002").data[0].embedding
                 embeddings.append(embedding)
-            except openai.APIError as e:
-                errores.append(f"OpenAI API returned an API Error: {e}")
-            except openai.APIConnectionError as e:
-                errores.append(f"Failed to connect to OpenAI API: {e}")
-            except openai.RateLimitError as e:
-                errores.append(f"OpenAI API request exceeded rate limit: {e}")
             except Exception as e:
-                errores.append(f"Error al obtener incrustaciones para el texto: {texto}, Excepción: {e}")
+                print("Error al obtener incrustaciones para el texto:", texto)
+                print("Excepción:", e)
 
         if not embeddings:
             print("Advertencia: No se pudieron obtener incrustaciones para ningún texto.")
@@ -111,7 +105,7 @@ def obtener_incrustaciones(data, column_name, api_key):
         X_nuevos = np.array(nuevos_padded_embeddings)
         
 
-        return X_nuevos, errores
+        return X_nuevos
     
     except Exception as e:
         st.write("Error general al obtener incrustaciones:", e)
@@ -186,27 +180,37 @@ def run():
                 st.write("Error: La columna especificada no existe en los datos. Por favor ingrese el nombre de la columna  que contiene los comentarios")
                 return None
             
-           
+            try:
+                X_nuevos = obtener_incrustaciones(data, column_name, api_key)
+        
+                if X_nuevos is not None:
+                    modelo_cargado = pickle.loads(modelo())
+                    predicciones_nuevas = modelo_cargado.predict(X_nuevos)
+                    st.write("Datos clasificados:")
+                    data['Clasificación_gpt_4'] = predicciones_nuevas
+                    st.write(data)
                 
+                except Exception as e:
+                    st.error(f"Error al clasificar los comentarios: {e}")
+              
             # Clasificar los comentarios si se ha proporcionado la API Key
-            if api_key:
+            #if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
-                X_nuevos, errores = obtener_incrustaciones(data, column_name, api_key)
-                st.write(errores)
+             #   X_nuevos = obtener_incrustaciones(data, column_name, api_key)
                 # Añadir ceros adicionales para igualar el número de características esperado por el modelo
                 #X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
                 #st.write(X_nuevos_con_padding)
-                modelo_cargado = pickle.loads(modelo())
+            #    modelo_cargado = pickle.loads(modelo())
                 # Hacer predicciones con el modelo cargado utilizando los datos con padding
                 #warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
-                predicciones_nuevas = modelo_cargado.predict(X_nuevos)
+             #   predicciones_nuevas = modelo_cargado.predict(X_nuevos)
                 #st.write(predicciones_nuevas)
-                st.write("Datos clasificados:")
+              #  st.write("Datos clasificados:")
                 # Agregar una nueva columna "Clasificación_gpt_4" con los valores de las predicciones
-                data['Clasificación_gpt_4'] = predicciones_nuevas
-                st.write(data)
-                for msg in errores:
-                    st.write(msg)
+              #  data['Clasificación_gpt_4'] = predicciones_nuevas
+             #   st.write(data)
+                
+                
 
         
         except Exception as e:
