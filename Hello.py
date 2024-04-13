@@ -170,12 +170,14 @@ def run():
             
             st.write("Datos cargados:")
             st.write(data)
-            
-            column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
-            if not column_name:
-                st.warning("Ingrese el nombre de la columna que contiene los comentarios.")
-                return
-            
+            try:
+                column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
+                if not column_name:
+                    st.warning("Ingrese el nombre de la columna que contiene los comentarios.")
+                    return
+            except Exception as e:
+                st.write("Error escribe el nombre de la columna que contine los comentarios:", e)
+                return None
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
