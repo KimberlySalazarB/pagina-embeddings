@@ -190,8 +190,8 @@ def run():
                     data['Clasificación_gpt_4'] = predicciones_nuevas
                     st.write(data)
                 
-                except Exception as e:
-                    st.error(f"Error al clasificar los comentarios: {e}")
+            except Exception as e:
+                st.error(f"Error al clasificar los comentarios: {e}")
               
             # Clasificar los comentarios si se ha proporcionado la API Key
             #if api_key:
