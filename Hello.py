@@ -205,6 +205,8 @@ def run():
                 # Agregar una nueva columna "Clasificación_gpt_4" con los valores de las predicciones
                 data['Clasificación_gpt_4'] = predicciones_nuevas
                 st.write(data)
+                for msg in errores:
+                    st.write(msg)
 
         
         except Exception as e:
