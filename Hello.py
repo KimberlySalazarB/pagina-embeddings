@@ -87,6 +87,18 @@ def obtener_incrustaciones(data, column_name, api_key):
             except Exception as e:
                 print("Error al obtener incrustaciones para el texto:", texto)
                 print("Excepción:", e)
+            except openai.APIError as e:
+              #Handle API error here, e.g. retry or log
+              st.write(f"OpenAI API returned an API Error: {e}")
+              pass
+            except openai.APIConnectionError as e:
+  #Handle connection error here
+              st.write(f"Failed to connect to OpenAI API: {e}")
+              pass
+            except openai.RateLimitError as e:
+  #Handle rate limit error (we recommend using exponential backoff)
+              st.write(f"OpenAI API request exceeded rate limit: {e}")
+              pass
 
         if not embeddings:
             print("Advertencia: No se pudieron obtener incrustaciones para ningún texto.")
@@ -110,18 +122,7 @@ def obtener_incrustaciones(data, column_name, api_key):
     except Exception as e:
         st.write("Error general al obtener incrustaciones:", e)
         return None
-    except openai.APIError as e:
-  #Handle API error here, e.g. retry or log
-      st.write(f"OpenAI API returned an API Error: {e}")
-      pass
-    except openai.APIConnectionError as e:
-  #Handle connection error here
-      st.write(f"Failed to connect to OpenAI API: {e}")
-      pass
-    except openai.RateLimitError as e:
-  #Handle rate limit error (we recommend using exponential backoff)
-      st.write(f"OpenAI API request exceeded rate limit: {e}")
-      pass
+    
 
 
 # Función principal
