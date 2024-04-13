@@ -111,9 +111,7 @@ def obtener_incrustaciones(data, column_name, api_key):
         st.write("Error general al obtener incrustaciones:", e)
         return None
 
-#def api_panda(api_key):
-    #llm = pandaAI(api_key=api_key)
-    #return llm
+
 # Función principal
 
 # Función para descargar DataFrame como archivo CSV
@@ -170,14 +168,16 @@ def run():
             
             st.write("Datos cargados:")
             st.write(data)
-            try:
-                column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
-                if not column_name:
-                    st.warning("Ingrese el nombre de la columna que contiene los comentarios.")
-                    return
-            except Exception as e:
-                st.write("Error escribe el nombre de la columna que contine los comentarios:", e)
+            
+            column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
+            if column_name not in data.columns:
+                st.write("Error: La columna especificada no existe en los datos.")
                 return None
+            if not column_name:
+                st.warning("Ingrese el nombre de la columna que contiene los comentarios.")
+                return
+           
+                
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
@@ -195,16 +195,11 @@ def run():
                 # Agregar una nueva columna "Clasificación_gpt_4" con los valores de las predicciones
                 data['Clasificación_gpt_4'] = predicciones_nuevas
                 st.write(data)
-
+        
         except Exception as e:
             st.error(f"Error al cargar el archivo: {e}")
+            
 
-    # Mostrar la imagen desde una URL
-    #url_imagen = "https://raw.githubusercontent.com/KimberlySalazarB/paginaprueba/main/Imagen3.jpg"
-    #contenido_imagen = obtener_contenido_archivo(url_imagen)
-    #if contenido_imagen is not None:
-        #imagen = Image.open(BytesIO(contenido_imagen))
-        #st.image(imagen, caption='Imagen desde la URL')
 
 
     # Mostrar comentarios antivacunas al hacer clic en un botón
@@ -255,11 +250,6 @@ def run():
             st.write("No se encontraron comentarios dudas.")
 
     
-    #llm= pandaAI(api_token=api_key)
-    #df = SmartDataframe(data, config={"llm":llm})
-    #consulta = st.text_input("Ingrese su pregunta respecto a los comentarios:")
-    #rspen = df.chat(consulta)
-    #st.write(rspen)
 
 if __name__ == "__main__":
     run()
