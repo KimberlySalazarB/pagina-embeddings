@@ -172,6 +172,9 @@ def run():
             st.write(data)
             
             column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
+            if not column_name:
+                st.warning("Ingrese el nombre de la columna que contiene los comentarios.")
+                return
             
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
