@@ -180,39 +180,25 @@ def run():
                 st.write("Error: La columna especificada no existe en los datos. Por favor ingrese el nombre de la columna  que contiene los comentarios")
                 return None
             
-            try:
-                X_nuevos = obtener_incrustaciones(data, column_name, api_key)
-        
-                if X_nuevos is not None:
-                    modelo_cargado = pickle.loads(modelo())
-                    predicciones_nuevas = modelo_cargado.predict(X_nuevos)
-                    st.write("Datos clasificados:")
-                    data['Clasificación_gpt_4'] = predicciones_nuevas
-                    st.write(data)
-                
-            except Exception as e:
-                st.error(f"Error al clasificar los comentarios: {e}")
               
             # Clasificar los comentarios si se ha proporcionado la API Key
-            #if api_key:
+            if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
-             #   X_nuevos = obtener_incrustaciones(data, column_name, api_key)
+                X_nuevos = obtener_incrustaciones(data, column_name, api_key)
                 # Añadir ceros adicionales para igualar el número de características esperado por el modelo
                 #X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
                 #st.write(X_nuevos_con_padding)
-            #    modelo_cargado = pickle.loads(modelo())
+                modelo_cargado = pickle.loads(modelo())
                 # Hacer predicciones con el modelo cargado utilizando los datos con padding
                 #warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
-             #   predicciones_nuevas = modelo_cargado.predict(X_nuevos)
+                predicciones_nuevas = modelo_cargado.predict(X_nuevos)
                 #st.write(predicciones_nuevas)
-              #  st.write("Datos clasificados:")
+                st.write("Datos clasificados:")
                 # Agregar una nueva columna "Clasificación_gpt_4" con los valores de las predicciones
-              #  data['Clasificación_gpt_4'] = predicciones_nuevas
-             #   st.write(data)
+                data['Clasificación_gpt_4'] = predicciones_nuevas
+                st.write(data)
                 
-                
-
-        
+ 
         except Exception as e:
            st.error(f"Error al cargar el archivo: {e}")
             
