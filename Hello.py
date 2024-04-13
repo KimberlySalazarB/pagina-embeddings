@@ -156,10 +156,6 @@ def run():
     if not api_key:
         st.warning("Ingrese su API Key de OpenAI.")
         return
-
-    #column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
-    
-    #st.write("Versión de scikit-learn:", sklearn.__version__)
                       
     uploaded_file = st.file_uploader("Cargar archivo", type=["csv", "xlsx"])
     
@@ -176,6 +172,7 @@ def run():
             st.write(data)
             
             column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
+            
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
