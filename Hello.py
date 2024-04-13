@@ -148,16 +148,13 @@ def run():
     """
     )
 
-    try:
     # Botón para ocultar/mostrar la API de OpenAI
-        api_key = st.text_input("API Key de OpenAI", type="password")
+    api_key = st.text_input("API Key de OpenAI", type="password")
     # Mostrar advertencia si no se ha ingresado la API Key
-        if not api_key:
-            st.warning("Ingrese su API Key de OpenAI.")
-            return
-    except Exception as e:
-    # Manejar cualquier excepción que ocurra aquí
-        st.error(f"Se produjo un error al procesar la API Key: {e}")
+    if not api_key:
+        st.warning("Ingrese su API Key de OpenAI.")
+        return
+    
                       
     uploaded_file = st.file_uploader("Cargar archivo", type=["csv", "xlsx"])
     
