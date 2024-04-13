@@ -64,6 +64,7 @@ def parse_embeddings(embedding_str):
         # Si no se puede convertir, devuelve una lista vacía
         return []
 def obtener_incrustaciones(data, column_name, api_key):
+    errores=[]
     try:
         # Verificar la API Key
         if not api_key:
@@ -84,21 +85,14 @@ def obtener_incrustaciones(data, column_name, api_key):
             try:
                 embedding = client.embeddings.create(input=texto, model="text-embedding-ada-002").data[0].embedding
                 embeddings.append(embedding)
-            except Exception as e:
-                print("Error al obtener incrustaciones para el texto:", texto)
-                print("Excepción:", e)
             except openai.APIError as e:
-              #Handle API error here, e.g. retry or log
-              st.write(f"OpenAI API returned an API Error: {e}")
-              pass
+                errores.append(f"OpenAI API returned an API Error: {e}")
             except openai.APIConnectionError as e:
-  #Handle connection error here
-              st.write(f"Failed to connect to OpenAI API: {e}")
-              pass
+                errores.append(f"Failed to connect to OpenAI API: {e}")
             except openai.RateLimitError as e:
-  #Handle rate limit error (we recommend using exponential backoff)
-              st.write(f"OpenAI API request exceeded rate limit: {e}")
-              pass
+                errores.append(f"OpenAI API request exceeded rate limit: {e}")
+            except Exception as e:
+                errores.append(f"Error al obtener incrustaciones para el texto: {texto}, Excepción: {e}")
 
         if not embeddings:
             print("Advertencia: No se pudieron obtener incrustaciones para ningún texto.")
@@ -117,7 +111,7 @@ def obtener_incrustaciones(data, column_name, api_key):
         X_nuevos = np.array(nuevos_padded_embeddings)
         
 
-        return X_nuevos
+        return X_nuevos, errores
     
     except Exception as e:
         st.write("Error general al obtener incrustaciones:", e)
@@ -197,8 +191,8 @@ def run():
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
-                X_nuevos = obtener_incrustaciones(data, column_name, api_key)
-                #st.write(X_nuevos)
+                X_nuevos, errores = obtener_incrustaciones(data, column_name, api_key)
+                st.write(errores)
                 # Añadir ceros adicionales para igualar el número de características esperado por el modelo
                 #X_nuevos_con_padding = np.pad(X_nuevos, ((0, 0), (0, 22)), mode='constant')
                 #st.write(X_nuevos_con_padding)
