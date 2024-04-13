@@ -106,21 +106,7 @@ def obtener_incrustaciones(data, column_name, api_key):
         
 
         return X_nuevos
-    except openai.APIError as e:
-    # Manejar error de la API aquí, por ejemplo, reintentar o registrar
-        print(f"La API de OpenAI devolvió un Error de API: {e}")
-        pass
-
-    except openai.APIConnectionError as e:
-    # Manejar error de conexión aquí
-        print(f"No se pudo conectar a la API de OpenAI: {e}")
-        pass
-
-    except openai.RateLimitError as e:
-    # Manejar error de límite de velocidad (recomendamos usar un retraso exponencial)
-        print(f"La solicitud a la API de OpenAI excedió el límite de velocidad: {e}")
-        pass
-
+    
     except Exception as e:
         st.write("Error general al obtener incrustaciones:", e)
         return None
@@ -210,7 +196,20 @@ def run():
                 # Agregar una nueva columna "Clasificación_gpt_4" con los valores de las predicciones
                 data['Clasificación_gpt_4'] = predicciones_nuevas
                 st.write(data)
-        
+        except openai.APIError as e:
+    # Manejar error de la API aquí, por ejemplo, reintentar o registrar
+            print(f"La API de OpenAI devolvió un Error de API: {e}")
+            pass
+
+        except openai.APIConnectionError as e:
+    # Manejar error de conexión aquí
+            print(f"No se pudo conectar a la API de OpenAI: {e}")
+            pass
+
+        except openai.RateLimitError as e:
+    # Manejar error de límite de velocidad (recomendamos usar un retraso exponencial)
+            print(f"La solicitud a la API de OpenAI excedió el límite de velocidad: {e}")
+            pass
         except Exception as e:
             st.error(f"Error al cargar el archivo: {e}")
             
