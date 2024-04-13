@@ -154,8 +154,8 @@ def run():
     # Mostrar advertencia si no se ha ingresado la API Key
     try:
         if not api_key:
-        st.warning("Ingrese su API Key de OpenAI.")
-        return
+            st.warning("Ingrese su API Key de OpenAI.")
+            return
         client = OpenAI(api_key=api_key)
         
     except openai.AuthenticationError as e:
