@@ -157,7 +157,7 @@ def run():
         st.warning("Ingrese su API Key de OpenAI.")
         return
 
-    column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
+    #column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
     
     #st.write("Versión de scikit-learn:", sklearn.__version__)
                       
@@ -175,6 +175,7 @@ def run():
             st.write("Datos cargados:")
             st.write(data)
             
+            column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
             # Clasificar los comentarios si se ha proporcionado la API Key
             if api_key:
                 #openaiapi_key="'"+ str(api_key) + "'"
