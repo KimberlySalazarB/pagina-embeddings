@@ -170,9 +170,6 @@ def run():
             st.write(data)
             
             column_name = st.text_input("Ingrese el nombre de la columna que contiene los comentarios:")
-            if not column_name:
-                st.warning("Ingrese el nombre de la columna que contiene los comentarios.")
-                return
             if column_name not in data.columns:
                 st.write("Error: La columna especificada no existe en los datos. Por favor ingrese el nombre de la columna  que contiene los comentarios")
                 return None
